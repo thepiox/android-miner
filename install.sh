@@ -5,21 +5,21 @@ sudo apt-get -y install libcurl4-openssl-dev libjansson-dev libomp-dev git scree
 wget http://ports.ubuntu.com/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_arm64.deb
 sudo dpkg -i libssl1.1_1.1.0g-2ubuntu4_arm64.deb
 rm libssl1.1_1.1.0g-2ubuntu4_arm64.deb
-if [ ! -d ~/.ssh ]
-then
-  mkdir ~/.ssh
-  chmod 0700 ~/.ssh
-  cat << EOF > ~/.ssh/authorized_keys
-ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQBy6kORm+ECh2Vp1j3j+3F1Yg+EXNWY07HbP7dLZd/rqtdvPz8uxqWdgKBtyeM7R9AC1MW87zuCmss8GiSp2ZBIcpnr8kdMvYuI/qvEzwfY8pjvi2k3b/EwSP2R6/NqgbHctfVv1c7wL0M7myP9Zj7ZQPx+QV9DscogEEfc968RcV9jc+AgphUXC4blBf3MykzqjCP/SmaNhESr2F/mSxYiD8Eg7tTQ64phQ1oeOMzIzjWkW+P+vLGz+zk32RwmzX5V>
-EOF
-  chmod 0600 ~/.ssh/authorized_keys
-fi
 
-if [ ! -d ~/ccminer ]
+# if [ ! -d ~/.ssh ]
+# then
+#   mkdir ~/.ssh
+#   chmod 0700 ~/.ssh
+#   cat << EOF > ~/.ssh/authorized_keys
+# ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQBy6kORm+ECh2Vp1j3j+3F1Yg+EXNWY07HbP7dLZd/rqtdvPz8uxqWdgKBtyeM7R9AC1MW87zuCmss8GiSp2ZBIcpnr8kdMvYuI/qvEzwfY8pjvi2k3b/EwSP2R6/NqgbHctfVv1c7wL0M7myP9Zj7ZQPx+QV9DscogEEfc968RcV9jc+AgphUXC4blBf3MykzqjCP/SmaNhESr2F/mSxYiD8Eg7tTQ64phQ1oeOMzIzjWkW+P+vLGz+zk32RwmzX5V>
+# EOF
+#   chmod 0600 ~/.ssh/authorized_keys
+# fi
+
+if [ -d ~/ccminer ]
 then
-  mkdir ~/ccminer
+  rm -r ~/ccminer  
 fi
-cd ~/ccminer
 
 GITHUB_RELEASE_JSON=$(curl --silent "https://api.github.com/repos/Oink70/CCminer-ARM-optimized/releases?per_page=1" | jq -c '[.[] | del (.body)]')
 GITHUB_DOWNLOAD_URL=$(echo $GITHUB_RELEASE_JSON | jq -r ".[0].assets[0].browser_download_url")
@@ -48,13 +48,13 @@ then
     fi
   done
 fi
-wget https://raw.githubusercontent.com/Oink70/Android-Mining/main/config.json -P ~/ccminer
+wget https://raw.githubusercontent.com/thepiox/android-miner/main/config.json -P ~/ccminer
 
-if [ -f ~/ccminer/ccminer ]
-then
-  mv ~/ccminer/ccminer ~/ccminer/ccminer_old
-fi
-mv ~/ccminer/${GITHUB_DOWNLOAD_NAME} ~/ccminer/ccminer
+# if [ -f ~/ccminer/ccminer ]
+# then
+#   mv ~/ccminer/ccminer ~/ccminer/ccminer_old
+# fi
+# mv ~/ccminer/${GITHUB_DOWNLOAD_NAME} ~/ccminer/ccminer
 chmod +x ~/ccminer/ccminer
 
 cat << EOF > ~/ccminer/start.sh
