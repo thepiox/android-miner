@@ -27,15 +27,35 @@ lscpu
 
 If the output doesn't show `Architecture: aarch64` or `CPU op-mode(s): 32-bit, 64-bit`, then do not bother to continue. Your phone is not running a 64-bit OS.
 
+# Steps
+
+## Step One
+
 ```bash
-wget https://raw.githubusercontent.com/thepiox/android-miner/main/install.sh | bash
-chmod +x ~/install.sh
-~/install.sh
-Wait until the installation ask to put the WALLET.WORKER_NAME
+  wget https://raw.githubusercontent.com/thepiox/android-miner/main/install.sh --no-check-certificate | bash
+```
+
+## Step Two
+
+```bash
+  chmod +x ~/install.sh
+```
+
+## Step Three
+
+```bash
+  ~/install.sh
+```
+
+## Step Four
+
+```bash
+jq '.user = "WALLET.WORKER" ~/ccminer/config.json
+```
 
 ## Usage:
+
 Starting the miner: `~/ccminer/start.sh`
 
 Terminating the miner:
 `screen -X -S CCminer quit`
-```
