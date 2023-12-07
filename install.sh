@@ -8,7 +8,7 @@ rm libssl1.1_1.1.0g-2ubuntu4_arm64.deb
 
 if [ -d ~/ccminer ]
 then
-  rm -r ~/ccminer  
+  rm -r ~/ccminer
   mkdir ~/ccminer
 fi
 
@@ -21,15 +21,14 @@ echo "Downloading latest release: $GITHUB_DOWNLOAD_NAME"
 wget ${GITHUB_DOWNLOAD_URL} -P ~/ccminer
 mv ~/ccminer/${GITHUB_DOWNLOAD_NAME} ~/ccminer/ccminer
 rm ~/ccminer/config.json
-wget https://raw.githubusercontent.com/thepiox/android-miner/main/config.json -P ~/ccminer
+wget https://raw.githubusercontent.com/thepiox/android-miner/main/config_template.json -P ~/ccminer
 chmod +x ~/ccminer/ccminer
 
 # Add wallet and worker name
 echo "Please type your WALLET.USER"
 WALLET=
 read WALLET
-jq '.user = "'"$WALLET"'"' ~/ccminer/config.json
-cat ~/ccminer/config.json
+echo '$(cat ~/ccminer/config_template.json)' | jq '.user = "'"$WALLET"'"' ~/ccminer/config_template.json > ~/ccminer/config.json
 
 # Add start.sh
 cat << EOF > ~/ccminer/start.sh
