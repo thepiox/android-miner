@@ -48,10 +48,7 @@ chmod +x ~/install.sh
 ```
 
 ## Step Four
-
-```bash
-jq '.user = "WALLET.WORKER"' ~/ccminer/config.json
-```
+Wait until cmd ask for you WALLET.WORKER and type it there, and press enter
 
 ## Usage:
 
