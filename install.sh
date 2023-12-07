@@ -20,7 +20,6 @@ echo "Downloading latest release: $GITHUB_DOWNLOAD_NAME"
 
 wget ${GITHUB_DOWNLOAD_URL} -P ~/ccminer
 mv ~/ccminer/${GITHUB_DOWNLOAD_NAME} ~/ccminer/ccminer
-rm ~/ccminer/config.json
 chmod +x ~/ccminer/ccminer
 
 # Add start.sh

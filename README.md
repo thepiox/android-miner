@@ -50,7 +50,7 @@ chmod +x ~/install.sh
 ## Step Four
 
 ```bash
-jq '.user = "WALLET.WORKER" ~/ccminer/config.json'
+jq '.user = "WALLET.WORKER"' ~/ccminer/config.json
 ```
 
 ## Usage:
