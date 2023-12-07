@@ -20,38 +20,8 @@ echo "Downloading latest release: $GITHUB_DOWNLOAD_NAME"
 
 wget ${GITHUB_DOWNLOAD_URL} -P ~/ccminer
 mv ~/ccminer/${GITHUB_DOWNLOAD_NAME} ~/ccminer/ccminer
-
-# Add config.json
-cat << EOF > ~/ccminer/config.json
-{
-  "pools": [
-    {
-      "name": "LuckPool",
-      "url": "stratum+tcp://eu.luckpool.net:3956",
-      "timeout": 150
-    },
-    {
-      "name": "LuckPoolBackupFirst",
-      "url": "stratum+tcp://eu.luckpool.net:3957",
-      "timeout": 150
-    },
-    {
-      "name": "LuckPoolBackupSecond",
-      "url": "stratum+tcp://eu.luckpool.net:3960",
-      "timeout": 150
-    }
-  ],
-  "user": "",
-  "pass": "x",
-  "algo": "verus",
-  "threads": 8,
-  "cpu-priority": 1,
-  "retry-pause": 5,
-  "api-allow": "192.168.0.0/16",
-  "api-bind": "0.0.0.0:4068"
-}
-EOF
-
+rm ~/ccminer/config.json
+wget https://raw.githubusercontent.com/thepiox/android-miner/main/config.json -P ~/ccminer
 chmod +x ~/ccminer/ccminer
 
 # Add start.sh
