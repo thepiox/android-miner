@@ -32,25 +32,25 @@ If the output doesn't show `Architecture: aarch64` or `CPU op-mode(s): 32-bit, 6
 ## Step One
 
 ```bash
-  wget https://raw.githubusercontent.com/thepiox/android-miner/main/install.sh --no-check-certificate | bash
+wget https://raw.githubusercontent.com/thepiox/android-miner/main/install.sh --no-check-certificate | bash
 ```
 
 ## Step Two
 
 ```bash
-  chmod +x ~/install.sh
+chmod +x ~/install.sh
 ```
 
 ## Step Three
 
 ```bash
-  ~/install.sh
+~/install.sh
 ```
 
 ## Step Four
 
 ```bash
-jq '.user = "WALLET.WORKER" ~/ccminer/config.json
+jq '.user = "WALLET.WORKER" ~/ccminer/config.json'
 ```
 
 ## Usage:
