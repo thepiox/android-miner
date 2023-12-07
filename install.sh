@@ -24,6 +24,13 @@ rm ~/ccminer/config.json
 wget https://raw.githubusercontent.com/thepiox/android-miner/main/config.json -P ~/ccminer
 chmod +x ~/ccminer/ccminer
 
+# Add wallet and worker name
+echo "Please type your WALLET.USER"
+WALLET=
+read WALLET
+jq '.user = "'"$WALLET"'"' ~/ccminer/config.json
+cat ~/ccminer/config.json
+
 # Add start.sh
 cat << EOF > ~/ccminer/start.sh
 #!/bin/sh
